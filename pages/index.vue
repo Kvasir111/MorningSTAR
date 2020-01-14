@@ -1,8 +1,11 @@
 <template>
   <div>
-    <button>New Check In</button>
-    <button>Quick Fix</button>
-    <button>Repair Queue</button>
+    <ul>
+      <nuxt-link to="/new_repair">New Repair</nuxt-link>
+      <nuxt-link to="/quick_fix">Quick Fix</nuxt-link>
+      <nuxt-link to="/repair_queue">Repair Queue</nuxt-link>
+      <nuxt-link to="/completed_repairs">Checkout Computer</nuxt-link>
+    </ul>
   </div>
 </template>
 

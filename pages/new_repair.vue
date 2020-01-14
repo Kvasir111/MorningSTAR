@@ -1,6 +1,10 @@
 <template>
 	<div class="h-screen flex">
-    <form class="m-auto">
+    <form class="m-auto bg-white rounded p-4" v-on:submit="">
+      <div class="bg-gray-300 ">
+      <h1>New Check-In</h1>
+      <h2>Enter Details for new repair</h2>
+      </div>
       <div :key=index v-for="(key, index) in customerInformation" id="Customer Information Block">
         <input v-bind:id="customerInformation[index].text" v-bind:placeholder="customerInformation[index].text" v-model="customerInformation[index].value">
       </div>
@@ -12,7 +16,7 @@
         <input type="text" v-model="deviceInformation[1].value" v-bind:placeholder="deviceInformation[1].text">
       </div>
       <div id="issue description">
-        <textarea cols="50" v-model="issue" placeholder="Description of issues"></textarea>
+        <textarea cols="50" v-model="issue" placeholder="Description of issues" />
       </div>
     </form>
   </div>
@@ -44,6 +48,11 @@
                 //literally the date it was dropped off
                 checkInDate: ''
             }
+        },
+        methods :{
+          createNewSO(){
+            console.log("Working!")
+          }
         }
     }
 </script>
