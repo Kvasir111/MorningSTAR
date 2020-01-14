@@ -1,12 +1,14 @@
 <template>
 	<div class="h-screen flex">
-    <form class="m-auto bg-white rounded p-4" v-on:submit="">
-      <div class="bg-gray-300 ">
-      <h1>New Check-In</h1>
-      <h2>Enter Details for new repair</h2>
+    <form class="m-auto" v-on:submit="">
+      <div class=" m-auto bg-gray-300 p-2 rounded-t ">
+        <h1>New Check-In</h1>
+        <h2>Enter Details for new repair</h2>
       </div>
+      <div class="bg-white rounded-b p-4">
+        <h2 class="w-full border-b-2 border-gray-500">Enter Customer Information</h2>
       <div :key=index v-for="(key, index) in customerInformation" id="Customer Information Block">
-        <input v-bind:id="customerInformation[index].text" v-bind:placeholder="customerInformation[index].text" v-model="customerInformation[index].value">
+        <input class="border-b-2 border-gray-200" v-bind:id="customerInformation[index].text" v-bind:placeholder="customerInformation[index].text" v-model="customerInformation[index].value">
       </div>
       <div id="Computer Information Block">
         <select id="MFG Selection">
@@ -17,6 +19,7 @@
       </div>
       <div id="issue description">
         <textarea cols="50" v-model="issue" placeholder="Description of issues" />
+      </div>
       </div>
     </form>
   </div>
