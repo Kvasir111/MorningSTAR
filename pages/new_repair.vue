@@ -1,26 +1,31 @@
 <template>
 	<div class="h-screen flex">
-    <form class="m-auto" v-on:submit="">
+    <form class="md:m-auto w-full md:w-1/3" v-on:submit="">
       <div class=" m-auto bg-gray-300 p-2 rounded-t ">
         <h1>New Check-In</h1>
-        <h2>Enter Details for new repair</h2>
+        <h1>Enter Details for new repair</h1>
       </div>
       <div class="bg-white rounded-b p-4">
-        <h2 class="w-full border-b-2 border-gray-500">Enter Customer Information</h2>
-      <div :key=index v-for="(key, index) in customerInformation" id="Customer Information Block">
-        <input class="border-b-2 border-gray-200" v-bind:id="customerInformation[index].text" v-bind:placeholder="customerInformation[index].text" v-model="customerInformation[index].value">
+        <h2>Enter Customer Information</h2>
+      <div class="text-center" :key=index v-for="(key, index) in customerInformation" id="Customer Information Block">
+        <input class="formTextInput focus:outline-none" v-bind:id="customerInformation[index].text" v-bind:placeholder="customerInformation[index].text" v-model="customerInformation[index].value">
       </div>
-      <div id="Computer Information Block">
-        <select id="MFG Selection">
-          <option disabled>Select MFG</option>
+      <div id="Computer Information Block" class="text-center p-2 ">
+        <h2>Enter Computer Information</h2>
+        <select class="focus:outline-none formTextInput" id="MFG Selection">
+          <option disabled selected>Select MFG</option>
           <option :key="index" v-model="deviceInformation[0].value" v-for="(oem, index) in mfgs">{{oem}}</option>
         </select>
-        <input type="text" v-model="deviceInformation[1].value" v-bind:placeholder="deviceInformation[1].text">
+        <input type="text" class="focus:outline-none formTextInput" v-model="deviceInformation[1].value" v-bind:placeholder="deviceInformation[1].text">
       </div>
-      <div id="issue description">
-        <textarea cols="50" v-model="issue" placeholder="Description of issues" />
+      <div id="issue description" class="text-center">
+        <textarea cols="50" v-model="issue" class="w-full border-2 border-gray-400" placeholder="Description of issues"></textarea>
       </div>
+        <div class="text-center">
+        <button type="submit" class="formButton">Create New Repair</button>
+        </div>
       </div>
+
     </form>
   </div>
 </template>
@@ -61,5 +66,14 @@
 </script>
 
 <style scoped>
+  .formTextInput{
+    @apply border-gray-400 border-b-2 p-2
+  }
+  .formButton{
+    @apply bg-gray-400 px-4 py-2 rounded mx-auto
+  }
+  h2{
+    @apply w-full border-b-2 border-gray-500
+  }
 
 </style>
