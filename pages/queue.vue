@@ -5,7 +5,9 @@
         <h1>In progress repairs</h1>
       </div>
       <div class="bg-white rounded-b">
+        <div :key="index" v-for="(repair, index) in repairQueue">
 
+        </div>
       </div>
     </div>
   </div>
@@ -14,6 +16,7 @@
 <script>
     export default {
         name: 'queue'
+
     };
 </script>
 
