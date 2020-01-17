@@ -1,6 +1,6 @@
 <template>
 	<div class="h-screen flex">
-    <form class="md:m-auto w-full md:w-1/3" v-on:submit="">
+    <form class="md:m-auto w-full md:w-1/3" v-on:submit="createNewSO">
       <div class=" m-auto bg-gray-300 p-2 rounded-t ">
         <h1>New Check-In</h1>
         <h1>Enter Details for new repair</h1>
@@ -31,6 +31,8 @@
 </template>
 
 <script>
+    import firebase from '@/plugins/firebase';
+
     export default {
         name: "new_repair",
         data : function () {
@@ -59,8 +61,53 @@
         },
         methods :{
           createNewSO(){
-            console.log("Working!")
-          }
+              //I'll have to make some function to create a unique SO number, but for now it's set at 1
+              //calls the create function to make an array of objects to send to the database
+              let serviceOrder = this.createServiceOrderObject(1);
+
+            //instantiates the firestore
+            const database = firebase.firestore();
+
+            database.collection("Repair Queue").add(serviceOrder).then(function (docref) {
+                //logs the docid to the console for reference
+                console.log("Created new SO with doc ID of: " + docref.id);
+            })
+              window.location.href()
+          },
+            createServiceOrderObject(SONumber){
+
+              //this function will create 3 objects based off the data declarations in the page, then it returns the  data as an object with 3 objects
+                //the 3 objects here use non-standard naming because it makes it easier to read in firebase
+              let Customer_Data = {
+                "Service Order #": SONumber,
+                "First Name" : this.customerInformation[0].value,
+                "Last Name" : this.customerInformation[1].value,
+                "Address": this.customerInformation[2].value,
+                "Account #" : this.customerInformation[3].value,
+                "Phone Number": this.customerInformation[4].value,
+              };
+
+              let Device_Data = {
+                "Make" : this.deviceInformation[0].value,
+                "Model" : this.deviceInformation[1].value,
+                "Serial Number" : this.deviceInformation[2].value
+              };
+
+                let today = new Date();
+                let dd = String(today.getDate()).padStart(2, '0');
+                let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                let yyyy = today.getFullYear();
+
+                today = mm + '/' + dd + '/' + yyyy;
+              let Repair_data = {
+                "Check In Reason" : this.issue,
+                  "Check In Date" : today,
+              };
+              //returns the 3 objects back to the createNewSO function to send off to firebase
+              return {
+                  Customer_Data, Device_Data, Repair_data
+              };
+            }
         }
     }
 </script>
