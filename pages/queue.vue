@@ -38,7 +38,7 @@
 
                         console.log(doc.data());
                         //appends a new repair to the repair list
-                        //this.appendToList(doc.data, doc.id)
+                        this.appendToList(doc.data, doc.id)
                     })
                 })
             },

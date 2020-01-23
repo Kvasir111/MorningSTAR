@@ -15,10 +15,10 @@
         props: ["repair"],
         data: function () {
             return {
-                clientName: this.repair['Customer Name'],
-                accountNumber: this.repair['Account #'],
-                serviceAddress: this.repair['Service Address'],
-                inDate: this.repair['Date Checked in'],
+                clientName: this.repair.customerObject['First Name'] + this.repair.customerObject['Last Name'],
+                accountNumber: this.repair.customerObject['Account #'],
+                serviceAddress: this.repair.customerObject['Address'],
+                inDate: this.repair.customerObject['Check In Date'],
             }
         }
     }
