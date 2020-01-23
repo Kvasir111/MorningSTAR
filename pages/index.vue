@@ -4,7 +4,7 @@
     <ul class="">
       <nuxt-link class="homeLink hover:bg-gray-300 hover:text-white" to="/new_repair">New Repair</nuxt-link>
       <nuxt-link class="homeLink hover:bg-gray-300" to="/quick_fix">Quick Fix</nuxt-link>
-      <nuxt-link class="homeLink hover:bg-gray-300" to="/repair_queue">Repair Queue</nuxt-link>
+      <nuxt-link class="homeLink hover:bg-gray-300" to="/queue">Repair Queue</nuxt-link>
       <nuxt-link class="homeLink hover:bg-gray-300" to="/completed_repairs">Checkout Computer</nuxt-link>
     </ul>
   </div>
