@@ -20,6 +20,12 @@
     export default {
         name: 'queue',
 
+        data : function(){
+            return{
+
+            }
+        },
+
         created() {
             //fetches all the in progress tickets when the page is created
             this.fetchRepairs()
@@ -38,19 +44,9 @@
 
                         console.log(doc.data());
                         //appends a new repair to the repair list
-                        this.appendToList(doc.data, doc.id)
                     })
                 })
             },
-            appendToList(repairData, repairID){
-                let ComponentClass = Vue.extend(queueItem);
-                let instance = new ComponentClass({
-                    propsData: {repairData}
-                });
-
-                instance.$mount();
-                this.$refs.repairList.appendChild(instance.$el);
-            }
         }
     };
 </script>
