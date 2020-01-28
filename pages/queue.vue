@@ -22,13 +22,33 @@
 
         data : function(){
             return{
-
             }
+        },
+
+        async asyncData(){
+            //repairList is an array of repair objects that will be used to create the repair queue items
+          let repairList = [];
+          await firebase
+              .firestore()
+              .collection("Repair Queue")
+              .get()
+              //the snapshot is what the database looks like when the function is called
+              .then(snapshot =>{
+                  //a doc is essentially a record in firebase, each doc con contain literally anything, but in this case each one represents a repair item
+                  snapshot.forEach(doc =>{
+                      repairList.push({
+                          //the doc ID will probably be used like a Service Order Number until I can come up with a better solution
+                          repairID: doc.id,
+                          //the data is 3 objects, customerObject, deviceObject, and repairObject, each one of them has some strings underneath it
+                          repairData: doc.data()
+                      })
+                  })
+              })
         },
 
         created() {
             //fetches all the in progress tickets when the page is created
-            this.fetchRepairs()
+            //this.fetchRepairs()
         },
         methods: {
             fetchRepairs(){
@@ -40,10 +60,9 @@
                 let allRepairs = repairsRef.get().then(snapshot =>{
                     //the snapshot is basically just that, what the database looks like when the function is called
                     snapshot.forEach(doc =>{
-
-
                         console.log(doc.data());
-                        //appends a new repair to the repair list
+                        //pushes the list of docs into the "list"
+                        this.list.push(doc);
                     })
                 })
             },
