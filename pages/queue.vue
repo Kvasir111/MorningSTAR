@@ -6,7 +6,7 @@
       </div>
       <div class="bg-white rounded-b">
         <div id="repairList" :key="index" v-for="(repair, index) in repairList">
-
+          <queue-item v-bind:repair="repair"></queue-item>
         </div>
       </div>
     </div>
@@ -19,8 +19,8 @@
     import queueItem from './queueItem';
     export default {
         name: 'queue',
-
-        data : function(){
+      components: { queueItem },
+      data : function(){
             return{
                 repairList : [],
             }

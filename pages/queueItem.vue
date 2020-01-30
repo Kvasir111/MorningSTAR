@@ -1,7 +1,7 @@
 <template>
-  <div class="card">
+  <div class="bg-white rounded w-1/3">
     <ul>
-      <li>{{clientName}}</li>
+      <li>{{repair}}</li>
     </ul>
   </div>
 </template>
@@ -12,8 +12,11 @@
         props: ["repair"],
         data: function () {
             return {
-                clientName: this.repair
+                clientName: '',
             }
+        },
+        created() {
+          console.log("created new item")
         }
     }
 </script>
