@@ -1,6 +1,6 @@
 <template>
 	<div class="h-screen flex">
-    <div class="m-auto w-full md:w-1/2 bg-white rounded p-2">
+    <div class="m-auto w-full md:w-1/2 bg-gray-600 rounded p-2">
         <h1 class="text-2xl font-bold m-2">In progress repairs</h1>
       <div class="">
         <div id="repairList" :key="index" v-for="(repair, index) in repairList">

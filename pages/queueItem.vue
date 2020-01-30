@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-300 hover:bg-orange-500 rounded w-full shadow-lg p-2">
+  <div class="bg-white hover:bg-orange-500 rounded w-full shadow-lg p-2">
     <ul id="customerInformation">
       <li><h3>Customer Name:</h3> {{clientName}}</li>
       <li><h3>Account#:</h3> {{accountNumber}}</li>
