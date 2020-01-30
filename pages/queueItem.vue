@@ -1,19 +1,19 @@
 <template>
-  <div class="bg-white rounded w-1/3 m-2 ">
+  <div class="bg-gray-300 hover:bg-orange-500 rounded w-full shadow-lg p-2">
     <ul id="customerInformation">
-      <li>{{clientName}}</li>
-      <li>{{accountNumber}}</li>
-      <li>{{address}}</li>
+      <li><h3>Customer Name:</h3> {{clientName}}</li>
+      <li><h3>Account#:</h3> {{accountNumber}}</li>
+      <li><h3>Address:</h3> {{address}}</li>
     </ul>
 
     <ul id="deviceInformation">
-      <li>{{deviceMake}}</li>
-      <li>{{deviceModel}}</li>
+      <li><h3>Computer Make:</h3> {{deviceMake}}</li>
+      <li><h3>Model #:</h3> {{deviceModel}}</li>
     </ul>
 
     <ul id="repairInformation">
-      <li>{{checkInDate}}</li>
-      <li>{{checkInReason}}</li>
+      <li><h3>Check in Date:</h3> {{checkInDate}}</li>
+      <li><h3>Repair Data:</h3> {{checkInReason}}</li>
     </ul>
   </div>
 </template>
@@ -48,5 +48,8 @@
 </script>
 
 <style scoped>
+  h3{
+    @apply inline italic
+  }
 
 </style>

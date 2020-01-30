@@ -1,10 +1,8 @@
 <template>
 	<div class="h-screen flex">
-    <div class="m-auto w-1/3">
-      <div class="bg-gray-400 rounded-t">
-        <h1>In progress repairs</h1>
-      </div>
-      <div class="bg-white rounded-b">
+    <div class="m-auto w-full md:w-1/2 bg-white rounded p-2">
+        <h1 class="text-2xl font-bold m-2">In progress repairs</h1>
+      <div class="">
         <div id="repairList" :key="index" v-for="(repair, index) in repairList">
           <queue-item v-bind:repair="repair"></queue-item>
         </div>
