@@ -2,21 +2,17 @@
 
 > PC repair tracking for HBCI
 
-## Build Setup
+# Waaaat the hell
 
-``` bash
-# install dependencies
-$ npm run install
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+So basically 🤞🤞, this is going to replace morningSTAR at some point, I didn't want to start with a dirty code base, so I figured I'd start from scratch.
 
-# build for production and launch server
-$ npm run build
-$ npm run start
+# 🚧Build Instructions🚧
 
-# generate static project
-$ npm run generate
-```
+There's no need to actually run this as an app, it's designed to be generated as a static site
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+`npm run generate`
+
+or
+
+`nuxt generate`
