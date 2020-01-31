@@ -9,7 +9,7 @@
 			</ul>
 
 		</div>
-		<div v-bind:id="SONumber" class="hidden">
+		<div v-bind:id="SOdetails" class="hidden">
 			<ul id="deviceInformation">
 				<li><h3>Account#:</h3> {{accountNumber}}</li>
 				<li><h3>Address:</h3> {{address}}</li>
@@ -22,7 +22,7 @@
 		</div>
 
 		<div class="inline-block">
-			<button type="button" v-bind:id="SONumber"
+			<button type="button" v-bind:id="SOdetailButton"
 					class=" inline-block bg-orange-500 px-2 rounded text-white font-bold" v-on:click="showDetails">More
 				Details
 			</button>
@@ -47,7 +47,9 @@
 				//this is the docID from firebase, it's used as the service order number
 				SONumber: this.repair.repairID,
 
-				SOdetailButtons: this.repair.repairID + "button",
+				//this is to uniquely ID the button for reference
+				SOdetailButton: this.repair.repairID + "button",
+				SOdetails: this.repair.repairID + "div",
 
 				//basic customer information, the first and last name come as separate data members but i've concatenated them here
 				clientName: this.repair.repairData.Customer_Data['First Name'] + ' ' + this.repair.repairData.Customer_Data['Last Name'],
@@ -69,15 +71,17 @@
 		},
 		methods: {
 			showDetails() {
-				let y = document.getElementById('detailsButton');
-				let x = document.getElementById('moreDetails');
+				let detailDiv = document.getElementById(this.SOdetails);
+				let button = document.getElementById(this.SOdetailButton);
 				if (this.show === false) {
-					x.style.display = 'inline';
-					y.innerHTML = 'Less Details';
+					//this is called when the "More Details" button is clicked, it sets the display of the hidden details to be shown, and also changes the button text to "less details"
+					detailDiv.style.display = "inline";
+					button.innerHTML = "Less Details";
 					this.show = true;
 				} else if (this.show === true) {
-					x.style.display = 'none';
-					y.innerHTML = 'More Details';
+					//Does the opposite of the above
+					detailDiv.style.display = "none";
+					button.innerHTML = "More Details";
 					this.show = false;
 				}
 			},
