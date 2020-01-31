@@ -53,6 +53,25 @@ export default {
   /*
   ** Build configuration
   */
+	generate: {
+		routes: async () => {
+			let { data } = await axios.post(process.env.POSTS_URL,
+				JSON.stringify({
+					filter: { published: true },
+					sort: {_created:-1},
+					populate: 1
+				}),
+				{
+					headers: { 'Content-Type': 'application/json' }
+				})
+			return data.entries.map((post) => {
+				return {
+					route: post.title_slug,
+					payload: post
+				}
+			})
+		}
+	},
   build: {
     /*
     ** You can extend webpack config here
