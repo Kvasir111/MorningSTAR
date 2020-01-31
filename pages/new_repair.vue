@@ -1,11 +1,11 @@
 <template>
 	<div class="h-screen flex">
-    <form class="md:m-auto w-full md:w-1/3" v-on:submit="createNewSO">
-      <div class=" m-auto bg-gray-300 p-2 rounded-t ">
+    <form class="md:m-auto w-full md:w-2/3" v-on:submit="createNewSO">
+      <div class="font-bold text-xl">
         <h1>New Check-In</h1>
-        <h1>Enter Details for new repair</h1>
+        <h1 class="italic">Enter Details for new repair</h1>
       </div>
-      <div class="bg-white rounded-b p-4">
+      <div class="bg-white rounded p-4">
         <h2>Enter Customer Information</h2>
       <div class="text-center" :key=index v-for="(key, index) in customerInformation" id="Customer Information Block">
         <input class="formTextInput focus:outline-none" v-bind:id="customerInformation[index].text" v-bind:placeholder="customerInformation[index].text" v-model="customerInformation[index].value">
