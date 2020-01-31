@@ -6,7 +6,13 @@
 
 <script>
     export default {
-        name: '_serviceorder'
+        name: '_serviceorder',
+
+		data : function() {
+        	return{
+        		id: this.$route.params.SOnumber,
+			}
+		}
     };
 </script>
 

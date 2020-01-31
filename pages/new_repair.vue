@@ -63,7 +63,7 @@
           createNewSO(){
               //I'll have to make some function to create a unique SO number, but for now it's set at 1
               //calls the create function to make an array of objects to send to the database
-              let serviceOrder = this.createServiceOrderObject(1);
+              let serviceOrder = this.createServiceOrderObject();
 
             //instantiates the firestore
             const database = firebase.firestore();
@@ -71,15 +71,13 @@
             database.collection("Repair Queue").add(serviceOrder).then(function (docref) {
                 //logs the docid to the console for reference
                 console.log("Created new SO with doc ID of: " + docref.id);
-            })
-              window.location.href()
+            });
           },
-            createServiceOrderObject(SONumber){
+            createServiceOrderObject(){
 
               //this function will create 3 objects based off the data declarations in the page, then it returns the  data as an object with 3 objects
                 //the 3 objects here use non-standard naming because it makes it easier to read in firebase
               let Customer_Data = {
-                "Service Order #": SONumber,
                 "First Name" : this.customerInformation[0].value,
                 "Last Name" : this.customerInformation[1].value,
                 "Address": this.customerInformation[2].value,

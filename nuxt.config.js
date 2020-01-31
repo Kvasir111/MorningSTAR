@@ -5,7 +5,7 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: "MorningSTAR dev" || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -53,25 +53,7 @@ export default {
   /*
   ** Build configuration
   */
-	generate: {
-		routes: async () => {
-			let { data } = await axios.post(process.env.POSTS_URL,
-				JSON.stringify({
-					filter: { published: true },
-					sort: {_created:-1},
-					populate: 1
-				}),
-				{
-					headers: { 'Content-Type': 'application/json' }
-				})
-			return data.entries.map((post) => {
-				return {
-					route: post.title_slug,
-					payload: post
-				}
-			})
-		}
-	},
+
   build: {
     /*
     ** You can extend webpack config here
