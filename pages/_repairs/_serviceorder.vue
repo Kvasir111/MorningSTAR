@@ -1,6 +1,6 @@
 <template>
     <div>
-      <h1>Service sssOrder</h1>
+      <h1>{{id}}</h1>
     </div>
 </template>
 

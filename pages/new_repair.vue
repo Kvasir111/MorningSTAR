@@ -12,7 +12,7 @@
       </div>
       <div id="Computer Information Block" class="text-center p-2 ">
         <h2>Enter Computer Information</h2>
-        <select class="focus:outline-none formTextInput" id="MFG Selection">
+        <select class="focus:outline-none formTextInput" v-model="deviceInformation[0].value" id="MFG Selection">
           <option disabled selected>Select MFG</option>
           <option :key="index" v-model="deviceInformation[0].value" v-for="(oem, index) in mfgs">{{oem}}</option>
         </select>
