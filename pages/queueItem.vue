@@ -29,11 +29,15 @@
 			<button type="button" id="openSOButton" class="inline-block bg-red-500 px-2 rounded text-white font-bold">
 				Open SO
 			</button>
+			<button type="button" v-bind:id="closeRepairButton" class=" inline-block bg-orange-500 px-2 rounded text-white font-bold" v-on:click="markCompleted(SONumber)">
+				Mark Repair Completed
+			</button>
 		</div>
 	</div>
 </template>
 
 <script>
+	import firebase from "@/plugins/firebase"
 	export default {
 		name: 'queueItem',
 		//the data from the firebase query is passed as an object, then parsed individually in the component
@@ -50,6 +54,7 @@
 				//this is to uniquely ID the button for reference
 				SOdetailButton: this.repair.repairID + "button",
 				SOdetails: this.repair.repairID + "div",
+				closeRepairButton: this.repair.repairID + "close",
 
 				//basic customer information, the first and last name come as separate data members but i've concatenated them here
 				clientName: this.repair.repairData.Customer_Data['First Name'] + ' ' + this.repair.repairData.Customer_Data['Last Name'],
@@ -86,6 +91,27 @@
 				}
 			},
 			copySO() {
+			},
+			markCompleted(id){
+				console.log(id);
+				//moves the doc from the repair queue into the "Finished Repairs" collection
+
+				//gets the reference for the collection of in progress repairs, using the id that was passed to it
+				let docRef = firebase.firestore().collection("Repair Queue").doc(id);
+				//actually gets the doc and does something with it
+				let getDoc = docRef.get()
+				.then(doc =>{
+					if (!doc.exists){
+						console.log("404 doc not found");
+					}
+					else{
+						console.log("Found Document!");
+						firebase.firestore().collection("Finished Repairs").add(doc);
+					}
+				}).catch(error =>{
+					console.log("Something went wrong....", error)
+					})
+				//let finished = firebase.firestore.collection("Finished Repairs");
 			}
 		}
 	};

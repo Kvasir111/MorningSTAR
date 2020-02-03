@@ -1,12 +1,11 @@
 <template>
 	<div class="h-screen flex">
-		<div id="searchDiv" class="mx-auto w-full bg-black">
-			<input type="text" class="rounded text-center" placeholder="Enter SO Number" v-on:keypress="search">
-		</div>
-		<div class="m-auto w-full md:w-2/3">
-			<h1 class="text-2xl font-bold m-2">In progress repairs</h1>
+		<div class="m-auto w-full  text-center md:w-2/3">
+			<h1 class="text-2xl font-bold m-2">Completed Repairs</h1>
 			<div class="w-full">
 				<div class="w-full" id="repairList" :key="index" v-for="(repair, index) in repairList">
+					<queue-item v-bind:repair="repair">
+					</queue-item>
 				</div>
 			</div>
 		</div>
@@ -18,6 +17,7 @@
 	import firebase from '@/plugins/firebase'
     export default {
         name: 'checkout',
+		components: { queueItem },
 		data: function() {
         	return{
         		title: "Repair Checkout",
@@ -45,8 +45,6 @@
 				})
 		},
 		methods: {
-        	search(searchID){
-			}
 		}
     };
 </script>
