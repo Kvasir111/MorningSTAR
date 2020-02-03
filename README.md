@@ -9,10 +9,8 @@ So basically 🤞🤞, this is going to replace morningSTAR at some point, I did
 
 # 🚧Build Instructions🚧
 
-There's no need to actually run this as an app, it's designed to be generated as a static site
+This will have to be run as an app, it uses dynamic routing meaning it's making pages on the fly
 
-`npm run generate`
-
+`npm run start`
 or
-
-`nuxt generate`
+`nuxt start`
