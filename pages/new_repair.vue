@@ -7,9 +7,13 @@
       </div>
       <div class="bg-white rounded p-4">
         <h2>Enter Customer Information</h2>
-      <div class="text-center" :key=index v-for="(key, index) in customerInformation" id="Customer Information Block">
-        <input class="formTextInput focus:outline-none" v-bind:id="customerInformation[index].text" v-bind:placeholder="customerInformation[index].text" v-model="customerInformation[index].value">
-      </div>
+		  <div class="text-center m-2 block" :key=index v-for="(key, index) in customerInformation" >
+			  <label v-bind:for="customerInformation[index].text" class="hidden">{{customerInformation[index].text}}</label>
+			  <input class="formTextInput w-full md:w-1/3 inline-block focus:outline-none"
+					 v-bind:id="customerInformation[index].text"
+					 v-bind:placeholder="customerInformation[index].text"
+					 v-model="customerInformation[index].value">
+		  </div>
       <div id="Computer Information Block" class="text-center p-2 ">
         <h2>Enter Computer Information</h2>
         <select class="focus:outline-none formTextInput" v-model="deviceInformation[0].value" id="MFG Selection">
@@ -17,6 +21,7 @@
           <option :key="index" v-model="deviceInformation[0].value" v-for="(oem, index) in mfgs">{{oem}}</option>
         </select>
         <input type="text" class="focus:outline-none formTextInput" v-model="deviceInformation[1].value" v-bind:placeholder="deviceInformation[1].text">
+		  <input type="text" class="focus:outline-none formTextInput" v-model="deviceInformation[2].value" v-bind:placeholder="deviceInformation[2].text">
       </div>
       <div id="issue description" class="text-center">
         <textarea cols="50" v-model="issue" class="w-full border-2 border-gray-400" placeholder="Description of issues"></textarea>
@@ -46,7 +51,7 @@
                     {text: 'Phone Number', value: ''},
                 ],
                 //an array of PC MFGs, this powers the drop down
-                mfgs: ['Dell', 'HP', 'Gateway', 'Toshiba', 'Lenovo', 'Alienware', 'MSI', 'Custom Build'],
+                mfgs: ['Alienware','Apple','Custom Build','Dell','Gateway','HP','Lenovo','MSI','Other Official OEM','Sony','Toshiba','eMachine'],
                 //This object holds the basic computer information, make and model, uses the above array as it's data source
                 deviceInformation: [
                     {text: 'Make', value: ''},
