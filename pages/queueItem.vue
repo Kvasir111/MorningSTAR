@@ -99,14 +99,18 @@
 				//gets the reference for the collection of in progress repairs, using the id that was passed to it
 				let docRef = firebase.firestore().collection("Repair Queue").doc(id);
 				//actually gets the doc and does something with it
-				let getDoc = docRef.get()
+				docRef.get()
 				.then(doc =>{
 					if (!doc.exists){
 						console.log("404 doc not found");
 					}
 					else{
 						console.log("Found Document!");
-						firebase.firestore().collection("Finished Repairs").add(doc);
+						let old = doc.data();
+						firebase.firestore().collection("Finished Repairs").add(old);
+						console.log("Moved new Document");
+						firebase.firestore.collection("Repair Queue").doc(id).delete();
+						console.log("Removed the old doc")
 					}
 				}).catch(error =>{
 					console.log("Something went wrong....", error)
