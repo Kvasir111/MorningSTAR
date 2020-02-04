@@ -24,7 +24,7 @@
 		  <input type="text" class="focus:outline-none formTextInput" v-model="deviceInformation[2].value" v-bind:placeholder="deviceInformation[2].text">
       </div>
       <div id="issue description" class="text-center">
-        <textarea cols="50" v-model="issue" class="w-full border-2 border-gray-400" placeholder="Description of issues"></textarea>
+        <textarea cols="50"  rows=10 v-model="issue" class="w-full border-2 border-gray-400" placeholder="Description of issues"></textarea>
       </div>
         <div class="text-center">
         <button type="submit" class="formButton">Create New Repair</button>

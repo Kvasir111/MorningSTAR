@@ -109,7 +109,7 @@
 						let old = doc.data();
 						firebase.firestore().collection("Finished Repairs").add(old);
 						console.log("Moved new Document");
-						firebase.firestore.collection("Repair Queue").doc(id).delete();
+						firebase.firestore().collection("Repair Queue").doc(id).delete();
 						console.log("Removed the old doc")
 					}
 				}).catch(error =>{

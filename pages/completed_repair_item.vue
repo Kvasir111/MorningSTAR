@@ -1,9 +1,40 @@
 <template>
-    <div>
+	<div class="bg-white w-full rounded shadow-md p-2 mt-2 hover:shadow-lg card">
+		<div id="quickDetails" class="block">
+			<h1 class="italic font-bold" id="SO#" v-on:click="copySO">SO #:{{SONumber}}</h1>
+			<ul id="">
+				<li><h3>Customer Name:</h3> {{clientName}}</li>
+				<li><h3>Make:</h3> {{deviceMake}}</li>
+				<li><h3>Model #:</h3> {{deviceModel}}</li>
+			</ul>
+
+		</div>
+		<div v-bind:id="SOdetails" class="hidden">
+			<ul id="deviceInformation">
+				<li><h3>Account#:</h3> {{accountNumber}}</li>
+				<li><h3>Address:</h3> {{address}}</li>
+			</ul>
+
+			<ul id="repairInformation">
+				<li><h3>Check in Date:</h3> {{checkInDate}}</li>
+				<li><h3>Repair Data:</h3> {{checkInReason}}</li>
+			</ul>
+		</div>
+
+		<div class="inline-block">
+			<button type="button" v-bind:id="SOdetailButton"
+					class=" inline-block bg-orange-500 px-2 rounded text-white font-bold" v-on:click="showDetails">More
+				Details
+			</button>
+			<button type="button" v-bind:id="closeRepairButton" class=" inline-block bg-red-500 px-2 rounded text-white font-bold" v-on:click="markCompleted(SONumber)">
+				Checkout Repair
+			</button>
+		</div>
 	</div>
 </template>
 
 <script>
+	import firebase from '@/plugins/firebase'
     export default {
     	props: ['repair'],
         name: 'completed_repair_item',
@@ -34,10 +65,57 @@
 				checkInDate: this.repair.repairData.Repair_data['Check In Date'],
 				checkInReason: this.repair.repairData.Repair_data['Check In Reason']
 			}
+		},
+		methods:{
+			showDetails() {
+				let detailDiv = document.getElementById(this.SOdetails);
+				let button = document.getElementById(this.SOdetailButton);
+				if (this.show === false) {
+					//this is called when the "More Details" button is clicked, it sets the display of the hidden details to be shown, and also changes the button text to "less details"
+					detailDiv.style.display = "inline";
+					button.innerHTML = "Less Details";
+					this.show = true;
+				} else if (this.show === true) {
+					//Does the opposite of the above
+					detailDiv.style.display = "none";
+					button.innerHTML = "More Details";
+					this.show = false;
+				}
+			},
+			copySO() {
+			},
+			markCompleted(id){
+				console.log(id);
+				//moves the doc from the repair queue into the "Finished Repairs" collection
+
+				//gets the reference for the collection of in progress repairs, using the id that was passed to it
+				let docRef = firebase.firestore().collection("Finished Repairs").doc(id);
+				//actually gets the doc and does something with it
+				docRef.get()
+					.then(doc =>{
+						if (!doc.exists){
+							console.log("404 doc not found");
+						}
+						else{
+							console.log("Found Document!");
+							let old = doc.data();
+							firebase.firestore().collection("Archive").add(old);
+							console.log("Moved new Document");
+							firebase.firestore().collection("Finished Repairs").doc(id).delete();
+							console.log("Removed the old doc")
+						}
+					}).catch(error =>{
+					console.log("Something went wrong....", error)
+				})
+				//let finished = firebase.firestore.collection("Finished Repairs");
+			}
 		}
     };
 </script>
 
 <style scoped>
+	h3 {
+		@apply inline italic
+	}
 
 </style>
