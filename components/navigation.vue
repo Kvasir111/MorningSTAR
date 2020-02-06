@@ -4,8 +4,8 @@
 		<arrow />
 	</span>
 	<div id="sideNavigation" class="navMenu inline-block h-screen">
-		<span  v-on:onclick="closeNavigation">
-			<arrow class="closeButton" />
+		<span v-on:click="closeNavigation">
+			<left-arrow class="closeButton" />
 		</span>
 		<ul>
 			<li :key="index" v-for="(link, index) in links" class="navButton text-white hover:bg-gray-300 hover:text-black">
@@ -18,9 +18,10 @@
 
 <script>
     import Arrow from './arrow';
+	import LeftArrow from './leftArrow';
 	export default {
         name: 'navigation',
-		components: { Arrow },
+		components: { LeftArrow, Arrow },
 		data:function() {
         	return{
 				links: [
