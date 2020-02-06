@@ -10,7 +10,8 @@
 
 		</div>
 		<div v-bind:id="SOdetails" class="hidden">
-			<ul id="deviceInformation">
+			<ul id="More Customer Information">
+				<li><h3>Phone#:</h3> {{phoneNumber}}</li>
 				<li><h3>Account#:</h3> {{accountNumber}}</li>
 				<li><h3>Address:</h3> {{address}}</li>
 			</ul>
@@ -56,6 +57,7 @@
 				clientName: this.repair.repairData.Customer_Data['First Name'] + ' ' + this.repair.repairData.Customer_Data['Last Name'],
 				accountNumber: this.repair.repairData.Customer_Data['Account #'],
 				address: this.repair.repairData.Customer_Data['Address'],
+				phoneNumber : this.repair.repairData.Customer_Data['Phone Number'],
 
 				//device information, such as computer make and model
 				deviceMake: this.repair.repairData.Device_Data['Make'],
