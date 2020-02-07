@@ -13,7 +13,7 @@
 
 <script>
     import firebase from '@/plugins/firebase';
-    import queueItem from './queueItem';
+    import queueItem from '../components/queueItem';
     export default {
         name: 'queue',
       components: { queueItem },

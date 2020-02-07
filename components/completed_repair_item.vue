@@ -27,7 +27,7 @@
 					class=" inline-block bg-orange-500 px-2 rounded text-white font-bold" v-on:click="showDetails">More
 				Details
 			</button>
-			<button type="button" v-bind:id="closeRepairButton" class=" inline-block bg-red-500 px-2 rounded text-white font-bold" v-on:click="markCompleted(SONumber)">
+			<button type="submit" v-bind:id="closeRepairButton" class=" inline-block bg-red-500 px-2 rounded text-white font-bold" v-on:submit="markCompleted(SONumber)">
 				Checkout Repair
 			</button>
 		</div>
@@ -117,7 +117,7 @@
 
 <style scoped>
 	h3 {
-		@apply inline italic
+		@apply inline italic underline
 	}
 
 </style>

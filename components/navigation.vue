@@ -30,6 +30,7 @@
 					{linkText: "Quick Fix", link: "/quickfix"},
 					{linkText: "Repair Queue", link: "/queue"},
 					{linkText: "Checkout", link: "/checkout"},
+					{linkText: "Archive", link: '/archive'}
 				],
 			}
 		},

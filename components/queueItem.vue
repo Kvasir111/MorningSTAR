@@ -123,7 +123,7 @@
 
 <style scoped>
 	h3 {
-		@apply inline italic
+		@apply inline italic underline
 	}
 	card{
 		animation-duration: 1s;
