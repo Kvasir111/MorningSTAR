@@ -1,7 +1,7 @@
 <template>
   <div class="h-screen flex">
   <div class="m-auto w-full">
-	  <img src="@/assets/morningstar.svg" alt="morningSTAR logo">
+	  <img src="~/assets/morningstar.svg" alt="morningSTAR logo">
   </div>
   </div>
 </template>
@@ -12,6 +12,11 @@ import Logo from '~/components/Logo.vue'
 export default {
   components: {
     Logo
+  },
+  data: function() {
+	return{
+		logo: '@'
+	}
   }
 }
 </script>
