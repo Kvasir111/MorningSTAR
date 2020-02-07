@@ -1,7 +1,7 @@
 <template>
   <div class="h-screen flex">
   <div class="m-auto w-full">
-	  <img src="~assets/morningstar.svg" alt="morningSTAR logo">
+	  <img v-bind:src="logo" alt="morningSTAR logo">
   </div>
   </div>
 </template>
@@ -15,7 +15,7 @@ export default {
   },
   data: function() {
 	return{
-		logo: '@'
+		logo: require('../assets/morningStar.svg'),
 	}
   }
 }
