@@ -1,6 +1,6 @@
 <template>
 	<div class="h-screen flex">
-		<div class="m-auto w-full md:w-2/3">
+		<div class="mx-auto w-full md:w-2/3">
 			<h1 class="text-2xl font-bold m-2 text-center">Completed Repairs</h1>
 			<div class="w-full">
 				<div class="w-full" id="repairList" :key="index" v-for="(repair, index) in repairList">
