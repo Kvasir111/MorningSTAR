@@ -8,8 +8,8 @@
 			<left-arrow class="closeButton" />
 		</span>
 		<ul>
-			<li :key="index" v-for="(link, index) in links" class="navButton text-white hover:bg-gray-300 hover:text-black">
-				<nuxt-link v-bind:to="link.link">{{link.linkText}}</nuxt-link>
+			<li :key="index" v-on:click="closeNavigation" v-for="(link, index) in links" class="navButton text-white hover:bg-gray-300 hover:text-black">
+				<nuxt-link v-bind:to="link.link" >{{link.linkText}}</nuxt-link>
 			</li>
 		</ul>
 	</div>
