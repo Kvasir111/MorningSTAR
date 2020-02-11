@@ -1,15 +1,15 @@
 <template>
 	<div class="h-screen flex">
-		<form class="md:m-auto w-full md:w-2/3" v-on:submit="createNewSO">
+		<form class="m-auto w-10/12 md:w-2/3" v-on:submit="createNewSO">
 			<div>
 				<h1 class="font-bold text-xl">Quick Fix</h1>
 				<h1 class="italic">Enter repair resolution</h1>
 			</div>
-			<div class="bg-white rounded p-4 text-center" id="Customer Information Block">
-				<h2 >Enter Customer Information</h2>
-				<div class="text-center m-2 block" :key=index v-for="(key, index) in customerInformation" >
-					<label v-bind:for="customerInformation[index].text" class="hidden">{{customerInformation[index].text}}</label>
-					<input class="formTextInput w-full md:w-1/3 inline-block focus:outline-none"
+			<div class="bg-white rounded-lg p-4 text-center shadow-lg mb-2" id="Customer Information Block">
+				<h2 class="mb-2">Enter Customer Information</h2>
+				<div class="flex-wrap overflow-hidden" >
+					<input  :key=index v-for="(key, index) in customerInformation"
+							class="formTextInput focus:outline-none mx-2"
 						   v-bind:id="customerInformation[index].text"
 						   v-bind:placeholder="customerInformation[index].text"
 						   v-model="customerInformation[index].value">
@@ -54,6 +54,7 @@
 					{text: 'Address', value: ''},
 					{text: 'Account #', value: ''},
 					{text: 'Phone Number', value: ''},
+					{text: 'Email', value: ''},
 				],
 				//an array of PC MFGs, this powers the drop down
 				mfgs: ['Alienware','Apple','Custom Build','Dell','Gateway','HP','Lenovo','MSI','Other Official OEM','Sony','Toshiba','eMachine'],
@@ -123,7 +124,7 @@
 
 <style scoped>
 	.formTextInput{
-		@apply border-gray-400 border-b-2 p-2
+		@apply rounded-full bg-gray-200 p-2
 	}
 	.formButton{
 		@apply bg-gray-400 px-4 py-2 rounded mx-auto
