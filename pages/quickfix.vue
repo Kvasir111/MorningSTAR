@@ -6,30 +6,31 @@
 				<h1 class="italic">Enter repair resolution</h1>
 			</div>
 			<div class="bg-white rounded-lg p-4 text-center shadow-lg mb-2" id="Customer Information Block">
-				<h2 class="mb-2">Enter Customer Information</h2>
+				<h2 class="mb-2 fontMont">Enter Customer Information</h2>
 				<div class="flex-wrap overflow-hidden" >
-					<input  :key=index v-for="(key, index) in customerInformation"
+					<input :key=index v-for="(key, index) in customerInformation"
 							class="formTextInput focus:outline-none mx-2 my-2 text-center w-full lg:w-1/3"
 						   v-bind:id="customerInformation[index].text"
 						   v-bind:placeholder="customerInformation[index].text"
 						   v-model="customerInformation[index].value">
 				</div>
+
 				<div id="Computer Information Block" class="text-center p-4 m-2">
-					<h2>Enter Computer Information</h2>
-					<div class="align-bottom">
-					<select class="focus:outline-none formTextInput" id="MFG Selection">
+					<h2 class="fontMont mb-2 ">Enter Computer Information</h2>
+					<div class="align-middle flex-wrap overflow-hidden">
+					<select class="focus:outline-none formTextInput mx-2 my-2 text-center w-full lg:w-1/3" id="MFG Selection">
 						<option disabled selected>Select MFG</option>
 						<option :key="index" v-model="deviceInformation[0].value" v-for="(oem, index) in mfgs">{{oem}}</option>
 					</select>
-					<input type="text" class="focus:outline-none formTextInput" v-model="deviceInformation[1].value" v-bind:placeholder="deviceInformation[1].text">
-					<input type="text" class="focus:outline-none formTextInput" v-model="deviceInformation[2].value" v-bind:placeholder="deviceInformation[2].text">
+					<input type="text" class="focus:outline-none formTextInput mx-2 my-2 text-center w-full lg:w-1/3" v-model="deviceInformation[1].value" v-bind:placeholder="deviceInformation[1].text">
+					<input type="text" class="focus:outline-none formTextInput  mx-2 my-2 text-center w-full lg:w-1/3" v-model="deviceInformation[2].value" v-bind:placeholder="deviceInformation[2].text">
 					</div>
 					</div>
 				<div id="issue description" class="text-center">
-					<textarea cols="50" rows="10" v-model="issue" class="w-full border-2 border-gray-400" placeholder="Description of issues"></textarea>
+					<textarea cols="50" rows="10" v-model="issue" class="myTextArea" placeholder="Description of issues"></textarea>
 				</div>
 				<div id="Fix Description" class="text-center">
-					<textarea cols="50" rows=10 v-model="fix" class="w-full border-2 border-gray-400" placeholder="Describe Fix"></textarea>
+					<textarea cols="50" rows=10 v-model="fix" class="myTextArea" placeholder="Describe Fix"></textarea>
 				</div>
 				<div class="text-center">
 					<button type="submit" class="formButton">Create New Repair</button>
@@ -134,5 +135,11 @@
 	}
 	h1{
 		font-family: 'Montserrat', sans-serif;
+	}
+	.fontMont{
+		font-family: 'Montserrat', sans-serif;
+	}
+	.myTextArea{
+		@apply w-full border-2 border-gray-400 rounded-lg p-2 bg-gray-200
 	}
 </style>
