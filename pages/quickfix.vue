@@ -9,7 +9,7 @@
 				<h2 class="mb-2">Enter Customer Information</h2>
 				<div class="flex-wrap overflow-hidden" >
 					<input  :key=index v-for="(key, index) in customerInformation"
-							class="formTextInput focus:outline-none mx-2"
+							class="formTextInput focus:outline-none mx-2 my-2 text-center w-full lg:w-1/3"
 						   v-bind:id="customerInformation[index].text"
 						   v-bind:placeholder="customerInformation[index].text"
 						   v-model="customerInformation[index].value">
