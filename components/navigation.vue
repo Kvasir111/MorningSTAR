@@ -1,11 +1,11 @@
 <template>
 <div>
-	<span v-on:click="openNavigation">
-		<arrow />
+	<span id='openButton' class="md:top-0" v-on:click="openNavigation">
+		<left-arrow />
 	</span>
 	<div id="sideNavigation" class="navMenu inline-block h-screen">
-		<span v-on:click="closeNavigation">
-			<left-arrow class="closeButton" />
+		<span v-on:click="closeNavigation" id="closeButton" class="md:top-0 md:right-0">
+			<arrow />
 		</span>
 		<ul>
 			<li :key="index" v-on:click="closeNavigation" v-for="(link, index) in links" class="navButton text-white hover:bg-gray-300 hover:text-black">
@@ -57,18 +57,16 @@
 		width: 0; /* 0 width - change this with JavaScript */
 		position: fixed; /* Stay in place */
 		z-index: 1; /* Stay on top */
-		top: 0; /* Stay at the top */
-		left: 0;
+		bottom: 0; /* Stay at the top */
+		right: 0;
 		overflow-x: hidden; /* Disable horizontal scroll */
 		padding-top: 60px; /* Place content 60px from the top */
 		transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 	}
-	.navMenu .closeButton{
-		position: absolute;
-		top: 0;
-		right: 25px;
-		font-size: 36px;
-		margin-left: 50px;
+	#closeButton{
+		@apply absolute left-0 bottom-0;
 	}
-
+	#openButton{
+		@apply absolute right-0 bottom-0;
+	}
 </style>
