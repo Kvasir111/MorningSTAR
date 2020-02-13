@@ -1,6 +1,6 @@
 <template>
   <div class="h-screen flex">
-  <div class="m-auto w-full">
+  <div class="mt-4 md:m-auto w-full">
 	  <img v-bind:src="logo" alt="morningSTAR logo">
   </div>
   </div>

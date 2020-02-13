@@ -104,7 +104,8 @@
 							firebase.firestore().collection("Archive").add(old);
 							console.log("Moved new Document");
 							firebase.firestore().collection("Finished Repairs").doc(id).delete();
-							console.log("Removed the old doc")
+							console.log("Removed the old doc");
+							window.location.reload();
 						}
 					}).catch(error =>{
 					console.log("Something went wrong....", error)

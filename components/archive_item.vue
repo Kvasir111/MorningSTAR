@@ -1,13 +1,12 @@
 <template>
 	<div class="bg-white w-full rounded shadow-md p-2 mt-2 hover:shadow-lg card">
 		<div id="quickDetails" class="block">
-			<h1 class="italic font-bold" id="SO#" v-on:click="copySO">SO #:{{SONumber}}</h1>
+			<h1 class="font-bold fontMont">{{clientName}}</h1>
+			<h2 class="fontMont italic font-bold text-gray-800" id="SO#">SO #:{{SONumber}}</h2>
 			<ul id="">
-				<li><h3>Customer Name:</h3> {{clientName}}</li>
 				<li><h3>Make:</h3> {{deviceMake}}</li>
 				<li><h3>Model #:</h3> {{deviceModel}}</li>
 			</ul>
-
 		</div>
 		<div v-bind:id="SOdetails" class="hidden">
 			<ul id="More Customer Information">
@@ -22,10 +21,15 @@
 			</ul>
 		</div>
 
-		<div class="inline-block">
-			<button type="button" v-bind:id="SOdetailButton"
-					class=" inline-block bg-orange-500 px-2 rounded text-white font-bold" v-on:click="showDetails">More
-				Details
+		<div class="inline-block ">
+			<button v-on:click="showDetails" v-bind:id="SOdetailButton" class="bg-orange-600 px-2 inline fontMont align-bottom text-white rounded-lg ">
+				{{text}}
+					<svg  class="inline" xmlns="http://www.w3.org/2000/svg"
+						  width="30" height="30" viewBox="0 0 24 24" fill="none"
+						  v-bind:stroke="arrowColor" v-bind:stroke-width="width" stroke-linecap="round" stroke-linejoin="round"
+					v-bind:id="SOdetailsSVG">
+						<path d="M6 9l6 6 6-6"/>
+					</svg>
 			</button>
 		</div>
 	</div>
@@ -33,11 +37,17 @@
 
 <script>
 	import firebase from '@/plugins/firebase'
+	import Details_button from './details_button';
     export default {
         name: 'archive_item',
+		components: { Details_button },
 		props: ['repair'],
 		data:function() {
 			return{
+				//button options
+				arrowColor: "#fafafa",
+				width: 3,
+				text: 'More Details',
 				//boolean to show or hide more details
 				show: false,
 
@@ -46,6 +56,7 @@
 
 				//this is to uniquely ID the button for reference
 				SOdetailButton: this.repair.repairID + "button",
+				SOdetailsSVG: this.repair.repairID + "svg",
 				SOdetails: this.repair.repairID + "div",
 				closeRepairButton: this.repair.repairID + "close",
 
@@ -68,15 +79,18 @@
 			showDetails() {
 				let detailDiv = document.getElementById(this.SOdetails);
 				let button = document.getElementById(this.SOdetailButton);
+				let svg = document.getElementById(this.SOdetailsSVG);
 				if (this.show === false) {
 					//this is called when the "More Details" button is clicked, it sets the display of the hidden details to be shown, and also changes the button text to "less details"
 					detailDiv.style.display = "inline";
-					button.innerHTML = "Less Details";
+					svg.style.transform = 'rotate(180deg)';
+					this.text = "Less Details";
 					this.show = true;
 				} else if (this.show === true) {
 					//Does the opposite of the above
 					detailDiv.style.display = "none";
-					button.innerHTML = "More Details";
+					svg.style.transform = 'rotate(0deg)';
+					this.text = "More Details";
 					this.show = false;
 				}
 			},
@@ -86,7 +100,7 @@
 
 <style scoped>
 	h3 {
-		@apply inline italic underline
+		@apply inline font-bold text-gray-700
 	}
 
 
