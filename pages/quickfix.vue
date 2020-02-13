@@ -155,6 +155,6 @@
 	}
 
 	.myTextArea {
-		@apply w-full border-2 border-gray-400 rounded-lg p-2 bg-gray-200
+		@apply w-full border-2 border-gray-400 rounded-lg p-2 bg-gray-200 outline-none
 	}
 </style>

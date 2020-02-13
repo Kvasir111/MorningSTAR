@@ -34,7 +34,7 @@
 					</div>
 				</div>
 				<div id="issue description" class="text-center">
-					<textarea cols="50" rows=10 v-model="issue" class="w-full border-2 border-gray-400"
+					<textarea cols="50" rows=10 v-model="issue" class="myTextArea"
 							  placeholder="Description of issues"></textarea>
 				</div>
 				<div class="text-center">
@@ -148,9 +148,8 @@
 	.fontMont {
 		font-family: 'Montserrat', sans-serif;
 	}
-
 	.myTextArea {
-		@apply w-full border-2 border-gray-400 rounded-lg p-2 bg-gray-200
+		@apply w-full border-2 border-gray-400 rounded-lg p-2 bg-gray-200 outline-none
 	}
 
 </style>
