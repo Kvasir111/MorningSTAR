@@ -10,7 +10,7 @@
 		<div>
 			<ul>
 				<li :key="index" v-on:click="closeNavigation" v-for="(page, index) in links">
-					<nuxt-link class="navButton" v-bind:to="page.link">{{page.linkText}}</nuxt-link>
+					<nuxt-link class="navButton text-white hover:text-black hover:bg-orange-500" v-bind:to="page.link">{{page.linkText}}</nuxt-link>
 				</li>
 			</ul>
 		</div>
