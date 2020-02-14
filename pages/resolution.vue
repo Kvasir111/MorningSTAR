@@ -1,6 +1,8 @@
 <template>
-    <div class="bg-white">
+	<div class="flex h-screen w-full">
+    <div class="bg-white rounded-lg w-10/12 shadow-lg mx-auto m-4">
 		<h1>{{repair}}</h1>
+	</div>
 	</div>
 </template>
 
@@ -29,6 +31,7 @@
 					console.log("Found Doc!");
 					console.log(doc.data());
 					this.repair = doc.data();
+					this.docID = doc.id;
 				}
 			})
 			.catch(error =>{
