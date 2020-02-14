@@ -30,7 +30,7 @@
 					<path d="M6 9l6 6 6-6"/>
 				</svg>
 			</button>
-			<button type="button" v-bind:id="closeRepairButton" class="bg-red-600 mx-2 px-2 inline fontMont align-bottom text-white rounded-lg" v-on:click="markCompleted(SONumber)">
+			<button type="button" v-bind:id="closeRepairButton" class="bg-red-600 mx-2 px-2 inline fontMont align-bottom text-white rounded-lg" v-on:click="openResolution(SONumber)">
 				Close Repair
 				<Close_repairButton class="inline" v-bind:stroke-color="arrowColor" v-bind:width="width"/>
 			</button>
@@ -82,7 +82,7 @@
 		},
 		created() {
 			//for debugging, just logs the event into the console
-			console.log('created new item');
+			//console.log('created new item');
 		},
 		methods: {
 			showDetails() {
@@ -103,7 +103,9 @@
 					this.show = false;
 				}
 			},
-			copySO() {
+			openResolution(id) {
+				document.cookie =  id;
+				window.location = '/resolution'
 			},
 			markCompleted(id){
 				console.log(id);
