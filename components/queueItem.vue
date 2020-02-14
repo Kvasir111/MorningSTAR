@@ -20,8 +20,8 @@
 			</ul>
 		</div>
 
-		<div class="inline-block">
-			<button v-on:click="showDetails" v-bind:id="SOdetailButton" class="bg-orange-600 px-2 inline fontMont align-bottom text-white rounded-lg ">
+		<div class="inline-block flex w-full justify-end content-center">
+			<button v-on:click="showDetails" v-bind:id="SOdetailButton" class="bg-orange-600 mx-2 px-2 inline fontMont align-bottom text-white rounded-lg ">
 				{{text}}
 				<svg  class="inline" xmlns="http://www.w3.org/2000/svg"
 					  width="30" height="30" viewBox="0 0 24 24" fill="none"
@@ -30,10 +30,7 @@
 					<path d="M6 9l6 6 6-6"/>
 				</svg>
 			</button>
-			<button type="button" id="openSOButton" class="inline-block bg-green-600 px-2 rounded text-white font-bold">
-				Open SO
-			</button>
-			<button type="button" v-bind:id="closeRepairButton" class="bg-red-600 px-2 inline fontMont align-bottom text-white rounded-lg" v-on:click="markCompleted(SONumber)">
+			<button type="button" v-bind:id="closeRepairButton" class="bg-red-600 mx-2 px-2 inline fontMont align-bottom text-white rounded-lg" v-on:click="markCompleted(SONumber)">
 				Close Repair
 				<Close_repairButton class="inline" v-bind:stroke-color="arrowColor" v-bind:width="width"/>
 			</button>
