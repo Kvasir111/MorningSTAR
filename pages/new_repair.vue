@@ -1,6 +1,6 @@
 <template>
 	<div class="h-screen flex">
-		<form class="md:m-auto w-full md:w-2/3" v-on:submit="createNewSO">
+		<form class="md:m-auto w-10/12 mx-auto md:w-2/3" v-on:submit="createNewSO">
 			<div>
 				<h1 class="font-bold text-xl">New Check-In</h1>
 				<h1 class="italic">Enter Details for new repair</h1>
@@ -36,6 +36,14 @@
 				<div id="issue description" class="text-center">
 					<textarea cols="50" rows=10 v-model="issue" class="myTextArea"
 							  placeholder="Description of issues"></textarea>
+				</div>
+				<div id="pricing options">
+					<select required class="focus:outline-none formTextInput mx-2 my-2 text-center w-full md:w-auto">
+						<option selected disabled>Select Pricing Option</option>
+						<option :key="index" v-for="(price, index) in prices">
+							{{price.type}} {{price.cost}}
+						</option>
+					</select>
 				</div>
 				<div class="text-center">
 					<button type="submit" class="formButton">Create New Repair</button>
@@ -73,7 +81,16 @@
 				//just a long ass string about what's wrong with the PC
 				issue: '',
 				//literally the date it was dropped off
-				checkInDate: ''
+				checkInDate: '',
+
+				//pricing options
+				prices: [
+					{type: "Standard 1hr Labor", cost: '$70'},
+					{type: "PC Build", cost: '$100'},
+					{type: "Misc Hardware Install", cost: '$25'},
+					{type: "Misc Software Install/Fix", cost: '$25'},
+					{type: "Standard 1hr Labor", cost: '$70'},
+				],
 			};
 		},
 		methods: {
