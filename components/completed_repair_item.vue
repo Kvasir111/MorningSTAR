@@ -18,6 +18,7 @@
 			<ul id="repairInformation">
 				<li><h3>Check in Date:</h3> {{checkInDate}}</li>
 				<li><h3>Repair Data:</h3> {{checkInReason}}</li>
+				<li><h3>Repair Resolution:</h3> {{resolution}}</li>
 			</ul>
 		</div>
 
@@ -79,7 +80,9 @@
 
 				//repair information, this is the description of the issue and when it was checked in, some of this might get moved to a different call since this can get lengthy if people are verbose
 				checkInDate: this.repair.repairData.Repair_data['Check In Date'],
-				checkInReason: this.repair.repairData.Repair_data['Check In Reason']
+				checkInReason: this.repair.repairData.Repair_data['Check In Reason'],
+				resolution: this.repair.repairData.Repair_data.Resolution,
+
 			}
 		},
 		methods:{

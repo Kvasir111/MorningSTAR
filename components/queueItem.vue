@@ -30,7 +30,7 @@
 					<path d="M6 9l6 6 6-6"/>
 				</svg>
 			</button>
-			<button type="button" v-bind:id="closeRepairButton" class="bg-red-600 mx-2 px-2 inline fontMont align-bottom text-white rounded-lg" v-on:click="openResolution(SONumber)">
+			<button type="button" v-bind:id="closeRepairButton" class="redButton" v-on:click="openResolution(SONumber)">
 				Close Repair
 				<Close_repairButton class="inline" v-bind:stroke-color="arrowColor" v-bind:width="width"/>
 			</button>
@@ -107,32 +107,6 @@
 				document.cookie =  id;
 				window.location = '/resolution'
 			},
-			markCompleted(id){
-				console.log(id);
-				//moves the doc from the repair queue into the "Finished Repairs" collection
-
-				//gets the reference for the collection of in progress repairs, using the id that was passed to it
-				let docRef = firebase.firestore().collection("Repair Queue").doc(id);
-				//actually gets the doc and does something with it
-				docRef.get()
-				.then(doc =>{
-					if (!doc.exists){
-						console.log("404 doc not found");
-					}
-					else{
-						console.log("Found Document!");
-						let old = doc.data();
-						firebase.firestore().collection("Finished Repairs").add(old);
-						console.log("Moved new Document");
-						firebase.firestore().collection("Repair Queue").doc(id).delete();
-						console.log("Removed the old doc");
-						window.location.reload();
-					}
-				}).catch(error =>{
-					console.log("Something went wrong....", error)
-					})
-				//let finished = firebase.firestore.collection("Finished Repairs");
-			}
 		}
 	};
 </script>
