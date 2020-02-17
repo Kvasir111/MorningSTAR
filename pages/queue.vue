@@ -12,6 +12,8 @@
 </template>
 
 <script>
+
+
     import firebase from '@/plugins/firebase';
     import queueItem from '../components/queueItem';
     export default {

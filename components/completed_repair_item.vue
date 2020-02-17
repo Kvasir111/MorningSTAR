@@ -43,6 +43,11 @@
 <script>
 	import firebase from '@/plugins/firebase'
 	import Close_repairButton from './close_repairButton';
+	import PizZip from 'pizzip'
+	import Docxtemplater from 'docxtemplater'
+	import fs from 'fs'
+	import path from 'path'
+
     export default {
     	props: ['repair'],
         name: 'completed_repair_item',
@@ -106,6 +111,24 @@
 			},
 			copySO() {
 			},
+
+			createDoc(){
+				let fs = require('fs');
+				let path = require('path')
+
+				//load in content
+				let content = fs.readFileSync(path.resolve(__dirname, 'input.docx'), 'binary');
+
+				let zip = new PizZip(content);
+
+				let doc = new Docxtemplater();
+
+				doc.loadZip(zip);
+
+				//doc level varibles
+
+			},
+
 			markCompleted(id){
 				console.log(id);
 				//moves the doc from the repair queue into the "Finished Repairs" collection
