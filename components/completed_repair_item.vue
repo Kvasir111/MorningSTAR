@@ -19,6 +19,7 @@
 				<li><h3>Check in Date:</h3> {{checkInDate}}</li>
 				<li><h3>Repair Data:</h3> {{checkInReason}}</li>
 				<li><h3>Repair Resolution:</h3> {{resolution}}</li>
+				<li><h3>Total Due: </h3> {{paymentDue}}</li>
 			</ul>
 		</div>
 
@@ -43,10 +44,6 @@
 <script>
 	import firebase from '@/plugins/firebase'
 	import Close_repairButton from './close_repairButton';
-	import PizZip from 'pizzip'
-	import Docxtemplater from 'docxtemplater'
-	import fs from 'fs'
-	import path from 'path'
 
     export default {
     	props: ['repair'],
@@ -87,6 +84,7 @@
 				checkInDate: this.repair.repairData.Repair_data['Check In Date'],
 				checkInReason: this.repair.repairData.Repair_data['Check In Reason'],
 				resolution: this.repair.repairData.Repair_data.Resolution,
+				paymentDue: this.repair.repairData.Repair_data['Quoted Price'],
 
 			}
 		},
@@ -113,19 +111,6 @@
 			},
 
 			createDoc(){
-				let fs = require('fs');
-				let path = require('path')
-
-				//load in content
-				let content = fs.readFileSync(path.resolve(__dirname, 'input.docx'), 'binary');
-
-				let zip = new PizZip(content);
-
-				let doc = new Docxtemplater();
-
-				doc.loadZip(zip);
-
-				//doc level varibles
 
 			},
 
@@ -153,7 +138,7 @@
 					}).catch(error =>{
 					console.log("Something went wrong....", error)
 				})
-				//let finished = firebase.firestore.collection("Finished Repairs");
+				Window.relo
 			}
 		}
     };

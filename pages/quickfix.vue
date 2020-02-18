@@ -51,6 +51,7 @@
 
 <script>
 	import Index from './index';
+	import firebase from '@/plugins/firebase'
 
 	export default {
 		name: 'quickfix',
