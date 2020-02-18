@@ -19,6 +19,7 @@
 				<li><h3>Check in Date:</h3> {{checkInDate}}</li>
 				<li><h3>Repair Data:</h3> {{checkInReason}}</li>
 				<li><h3>Repair Resolution:</h3> {{resolution}}</li>
+				<li><h3>Total Due: </h3> {{paymentDue}}</li>
 			</ul>
 		</div>
 
@@ -43,8 +44,9 @@
 <script>
 	import firebase from '@/plugins/firebase'
 	import Close_repairButton from './close_repairButton';
+
     export default {
-    	props: ['repair'],
+    	props: ['repair', 'index'],
         name: 'completed_repair_item',
 		components: { Close_repairButton },
 		data:function() {
@@ -82,6 +84,7 @@
 				checkInDate: this.repair.repairData.Repair_data['Check In Date'],
 				checkInReason: this.repair.repairData.Repair_data['Check In Reason'],
 				resolution: this.repair.repairData.Repair_data.Resolution,
+				paymentDue: this.repair.repairData.Repair_data['Quoted Price'],
 
 			}
 		},
@@ -106,6 +109,11 @@
 			},
 			copySO() {
 			},
+
+			createDoc(){
+
+			},
+
 			markCompleted(id){
 				console.log(id);
 				//moves the doc from the repair queue into the "Finished Repairs" collection
@@ -122,15 +130,14 @@
 							console.log("Found Document!");
 							let old = doc.data();
 							firebase.firestore().collection("Archive").add(old);
-							console.log("Moved new Document");
+							console.log("Copied doc to Archive");
 							firebase.firestore().collection("Finished Repairs").doc(id).delete();
 							console.log("Removed the old doc");
-							window.location.reload();
+							this.$emit('removeRepair')
 						}
 					}).catch(error =>{
 					console.log("Something went wrong....", error)
-				})
-				//let finished = firebase.firestore.collection("Finished Repairs");
+				});
 			}
 		}
     };

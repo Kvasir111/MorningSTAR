@@ -18,7 +18,7 @@
 				<div id="Computer Information Block" class="text-center p-2 ">
 					<h2 class="fontMont mb-2">Enter Computer Information</h2>
 					<div class="align-middle flex-wrap overflow-hidden">
-						<select class="focus:outline-none formTextInput mx-2 my-2 text-center w-full md:w-auto"
+						<select v-model="deviceInformation[0].value" class="focus:outline-none formTextInput mx-2 my-2 text-center w-full md:w-auto"
 								id="MFG Selection">
 							<option disabled selected>Select MFG</option>
 							<option :key="index" v-model="deviceInformation[0].value" v-for="(oem, index) in mfgs">
@@ -38,7 +38,7 @@
 							  placeholder="Description of issues"></textarea>
 				</div>
 				<div id="pricing options">
-					<select required class="focus:outline-none formTextInput mx-2 my-2 text-center w-full md:w-auto">
+					<select v-model="repairType" required class="focus:outline-none formTextInput mx-2 my-2 text-center w-full md:w-auto">
 						<option selected disabled>Select Pricing Option</option>
 						<option :key="index" v-for="(price, index) in prices">
 							{{price.type}} {{price.cost}}
@@ -89,8 +89,9 @@
 					{type: "PC Build", cost: '$100'},
 					{type: "Misc Hardware Install", cost: '$25'},
 					{type: "Misc Software Install/Fix", cost: '$25'},
-					{type: "Standard 1hr Labor", cost: '$70'},
 				],
+
+				repairType: '',
 			};
 		},
 		methods: {
@@ -133,7 +134,8 @@
 				today = mm + '/' + dd + '/' + yyyy;
 				let Repair_data = {
 					'Check In Reason': this.issue,
-					'Check In Date': today
+					'Check In Date': today,
+					'Quoted Price' : this.repairType,
 				};
 				//returns the 3 objects back to the createNewSO function to send off to firebase
 				return {

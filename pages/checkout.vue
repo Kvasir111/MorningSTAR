@@ -4,7 +4,7 @@
 			<h1 class="text-2xl font-bold m-2 text-center">Completed Repairs</h1>
 			<div class="w-full">
 				<div class="w-full" id="repairList" :key="index" v-for="(repair, index) in repairList">
-					<completed_repair_item v-bind:repair="repair"></completed_repair_item>
+					<completed_repair_item v-bind:repair="repair" v-bind:index="index" v-on:removeRepair="removeRow(index)"></completed_repair_item>
 				</div>
 			</div>
 		</div>
@@ -44,6 +44,9 @@
 				})
 		},
 		methods: {
+        	removeRow(index){
+        		this.repairList.splice(index, 1);
+			}
 		}
     };
 </script>
