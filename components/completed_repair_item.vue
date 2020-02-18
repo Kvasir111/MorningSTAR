@@ -46,7 +46,7 @@
 	import Close_repairButton from './close_repairButton';
 
     export default {
-    	props: ['repair'],
+    	props: ['repair', 'index'],
         name: 'completed_repair_item',
 		components: { Close_repairButton },
 		data:function() {
@@ -130,15 +130,14 @@
 							console.log("Found Document!");
 							let old = doc.data();
 							firebase.firestore().collection("Archive").add(old);
-							console.log("Moved new Document");
+							console.log("Copied doc to Archive");
 							firebase.firestore().collection("Finished Repairs").doc(id).delete();
 							console.log("Removed the old doc");
-							window.location.reload();
+							this.$emit('removeRepair')
 						}
 					}).catch(error =>{
 					console.log("Something went wrong....", error)
-				})
-				Window.relo
+				});
 			}
 		}
     };
