@@ -12,8 +12,14 @@
 	@apply w-full border-2 border-gray-400 rounded-lg p-2 bg-gray-200 outline-none
 }
 .greenButton{
-	@apply bg-green-600 mx-2 px-2 inline fontMont align-bottom text-white rounded-lg
+	background: #107C10;
+	@apply mx-2 px-2 inline fontMont align-bottom text-white rounded-lg
 }
 .redButton{
-	@apply bg-red-600 mx-2 px-2 inline fontMont align-bottom text-white rounded-lg
+	background: #E81123;
+	@apply mx-2 px-2 inline fontMont align-bottom text-white rounded-lg
+}
+.moreDetailsButton{
+	background: #F7630C;
+	@apply px-2 inline fontMont align-bottom text-white rounded-lg
 }
