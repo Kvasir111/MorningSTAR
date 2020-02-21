@@ -1,5 +1,7 @@
 <template>
 	<div class="h-screen flex">
+		<script src="node_modules/firebaseui/dist/firebaseui.js"></script>
+		<link type="text/css" rel="stylesheet" href="node_modules/firebaseui/dist/firebaseui.css" />
 		<div class="mt-4 md:m-auto w-full">
 			<img v-bind:src="logo" alt="morningSTAR logo">
 			<div class="text-center w-full block md:flex justify-center">
@@ -17,6 +19,8 @@
 	export default {
 		components: {
 			Logo
+		},
+		mounted() {
 		},
 		data: function() {
 			return {
