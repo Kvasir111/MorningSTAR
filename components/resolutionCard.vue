@@ -16,7 +16,7 @@
 				<h2 class="fontMont text-gray-800">Original Check-In Date: {{repair.Repair_data['Check In Date']}}</h2>
 				<p id="Check-in reason" class="fontMont text-red-500">{{repair.Repair_data['Check In Reason']}}</p>
 				<label class="hidden" for="Resolution">Repair Resolution</label>
-				<textarea rows="6" v-model="repairResolution" class="myTextArea" id="Resolution" placeholder="Enter Repair Resolution"/>
+				<textarea rows="6" v-model="repairResolution" class="myTextArea border-2 border-transparent focus:border-orange-500 " id="Resolution" placeholder="Enter Repair Resolution"/>
 			</div>
 			<div  class="flex w-full justify-end content-center" id="Button Block">
 				<button class="greenButton" v-on:click="markCompleted(docID)">
