@@ -31,10 +31,10 @@
 					<path d="M6 9l6 6 6-6"/>
 				</svg>
 			</button>
-			<button type="button" v-bind:id="closeRepairButton" class="redButton" v-on:click="openResolution(SONumber)">
+			<nuxt-link v-bind:id="closeRepairButton" class="redButton" v-bind:to="routeID">
 				Close Repair
 				<Close_repairButton class="inline" v-bind:stroke-color="arrowColor" v-bind:width="width"/>
-			</button>
+			</nuxt-link>
 			<button class="redButton" type="button" v-on:click="deleteRepair">
 			<delete_repair_button v-on:click="deleteRepair()"/>
 			</button>
@@ -64,6 +64,7 @@
 
 				//this is the docID from firebase, it's used as the service order number
 				SONumber: this.repair.repairID,
+				routeID : '/resolution?SO=' + this.repair.repairID,
 
 				//this is to uniquely ID the button for reference
 				SOdetailButton: this.repair.repairID + "button",
@@ -118,7 +119,6 @@
 			},
 			openResolution(id) {
 				//stores the docID as a cookie to then pass to the "resolution" page so the final details can be added and the repair can be closed
-				document.cookie =  id;
 				window.location = '/resolution'
 			},
 		}

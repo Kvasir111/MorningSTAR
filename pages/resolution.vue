@@ -1,7 +1,6 @@
 <template>
 	<div class="flex h-screen w-full">
 		<resolution-card :key=index v-for="(penis, index) in rows" v-bind:repair="penis.repairData" v-bind:docID="penis.docID"></resolution-card>
-
 	</div>
 </template>
 
@@ -28,9 +27,10 @@
 			};
 		},
 		async mounted() {
-			let id = this.getCookie();
-			console.log(id);
-			let queueRef = firebase.firestore().collection('Repair Queue').doc(id);
+			let d = {};
+			 d = this.getURLVars()['SO'];
+			console.log(d.id);
+			let queueRef = firebase.firestore().collection('Repair Queue').doc(d);
 			let getDoc = queueRef.get()
 				.then(doc => {
 					if (!doc.exists) {
@@ -52,6 +52,13 @@
 			getCookie() {
 				return document.cookie;
 			},
+			getURLVars(){
+				let v = {};
+				let parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+					v[key] = value;
+				});
+				return v;
+			}
 
 		}
 	};
